@@ -1,0 +1,27 @@
+@import url(https://fonts.googleapis.com/css?family=Karla:200,300,regular,500,600,700,800,200italic,300italic,italic,500italic,600italic,700italic,800italic);
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-green-200 font-sans;
+}
+
+.form-group {
+  @apply flex flex-col gap-2 mb-4;
+}
+
+.form-input {
+  @apply border-[1.5px] border-grey-900 rounded-lg p-2 hover:border-green-600 cursor-pointer focus-visible:outline-none focus-visible:border-green-600 focus-visible:border-2;
+}
+
+input[type="radio"] {
+  accent-color: #047857;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  accent-color: #047857;
+  cursor: pointer;
+}
