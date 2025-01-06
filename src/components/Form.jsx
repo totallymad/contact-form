@@ -23,13 +23,16 @@ const ContactForm = ({ handleModal }) => {
   const validateForm = () => {
     const newErrors = {};
     if (!formData.firstName.trim())
-      newErrors.firstName = "First Name is required";
-    if (!formData.lastName.trim()) newErrors.lastName = "Last Name is required";
+      newErrors.firstName = "This field is required";
+    if (!formData.lastName.trim())
+      newErrors.lastName = "This field is required";
     if (!formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email))
-      newErrors.email = "Valid Email Address is required";
-    if (!formData.queryType) newErrors.queryType = "Query Type is required";
-    if (!formData.message.trim()) newErrors.message = "Message is required";
-    if (!formData.consent) newErrors.consent = "You must give your consent";
+      newErrors.email = "Please enter a valid email address";
+    if (!formData.queryType) newErrors.queryType = "Please select a query type";
+    if (!formData.message.trim()) newErrors.message = "This field is required";
+    if (!formData.consent)
+      newErrors.consent =
+        "To submit this form, please consert to being contacted";
     return newErrors;
   };
 
@@ -71,7 +74,7 @@ const ContactForm = ({ handleModal }) => {
               onChange={handleChange}
             />
             {errors.firstName && (
-              <p className="text-red-600">{errors.firstName}</p>
+              <p className="text-rose-600">{errors.firstName}</p>
             )}
           </div>
           <div className="form-group">
@@ -87,7 +90,7 @@ const ContactForm = ({ handleModal }) => {
               onChange={handleChange}
             />
             {errors.lastName && (
-              <p className="text-red-600">{errors.lastName}</p>
+              <p className="text-rose-600">{errors.lastName}</p>
             )}
           </div>
         </div>
@@ -103,7 +106,7 @@ const ContactForm = ({ handleModal }) => {
             value={formData.email}
             onChange={handleChange}
           />
-          {errors.email && <p className="text-red-600">{errors.email}</p>}
+          {errors.email && <p className="text-rose-600">{errors.email}</p>}
         </div>
         <div className="mb-5">
           <h2 className="mb-2">
@@ -136,7 +139,7 @@ const ContactForm = ({ handleModal }) => {
             </div>
           </div>
           {errors.queryType && (
-            <p className="text-red-600">{errors.queryType}</p>
+            <p className="text-rose-600 mt-2">{errors.queryType}</p>
           )}
         </div>
         <div className="form-group">
@@ -150,21 +153,24 @@ const ContactForm = ({ handleModal }) => {
             value={formData.message}
             onChange={handleChange}
           ></textarea>
-          {errors.message && <p className="text-red-600">{errors.message}</p>}
+          {errors.message && <p className="text-rose-600">{errors.message}</p>}
         </div>
-        <div className="flex gap-3 mb-9">
-          <input
-            className="w-5"
-            type="checkbox"
-            name="consent"
-            id="check"
-            checked={formData.consent}
-            onChange={handleChange}
-          />
-          <label htmlFor="check">
-            I consent to being contacted by the team
-          </label>
-          {errors.consent && <p className="text-red-600">{errors.consent}</p>}
+        <div className="mb-9">
+          <div className="flex gap-3 mb-2">
+            <input
+              className="w-5"
+              type="checkbox"
+              name="consent"
+              id="check"
+              checked={formData.consent}
+              onChange={handleChange}
+            />
+            <label htmlFor="check">
+              I consent to being contacted by the team{" "}
+              <span className="pl-2 text-green-600">*</span>
+            </label>
+          </div>
+          {errors.consent && <p className="text-rose-600">{errors.consent}</p>}
         </div>
         <button
           type="submit"

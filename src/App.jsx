@@ -12,7 +12,7 @@ export default function App() {
   return (
     <>
       <Form handleModal={handleModal} />
-      <Modal openModal={openModal} />
+      <Modal openModal={openModal} handleModal={handleModal} />
     </>
   );
 }

@@ -1,4 +1,16 @@
-export default function Modal({ openModal }) {
+import { useEffect } from "react";
+
+export default function Modal({ openModal, handleModal }) {
+  useEffect(() => {
+    if (openModal) {
+      const timeout = setTimeout(() => {
+        handleModal(false); // Закрыть модальное окно, вызвав функцию handleModal
+      }, 3000); // Установить таймаут на 3 секунды
+
+      return () => clearTimeout(timeout); // Очистить таймаут при размонтировании компонента
+    }
+  }, [openModal, handleModal]);
+
   return (
     <dialog className="w-96" open={openModal}>
       <div className=" bg-emerald-950 fixed top-0 py-7 px-4 mt-4 rounded-xl">
